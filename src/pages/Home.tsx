@@ -8,6 +8,8 @@ import { Stack } from "@/components/sections/Stack";
 import { Process } from "@/components/sections/Process";
 import { Principles } from "@/components/sections/Principles";
 import { AboutTeaser } from "@/components/sections/AboutTeaser";
+import { Planner } from "@/components/sections/Planner";
+import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { ContactSection } from "@/components/sections/Contact";
 
@@ -24,6 +26,8 @@ export default function Home() {
       <Process />
       <Principles />
       <AboutTeaser />
+      <Planner />
+      <FAQ index="10" />
       <FinalCTA />
       <ContactSection />
     </>

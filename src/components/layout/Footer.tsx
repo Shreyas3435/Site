@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { nav, site, socials } from "@/content/site";
+import { liveSocials, nav, site } from "@/content/site";
 import { useLocalTime } from "@/hooks/useLocalTime";
 import { scrollToTarget, useLenis } from "@/lib/smooth-scroll";
 import { LogoSlot } from "@/components/ui/LogoSlot";
@@ -31,15 +31,17 @@ export function Footer() {
             ))}
           </FooterCol>
 
-          <FooterCol title="Social" className="md:col-span-2">
-            {socials.map((s) => (
-              <li key={s.label}>
-                <a href={s.href} className="link-line text-fg-2 hover:text-fg transition-colors">
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </FooterCol>
+          {liveSocials.length > 0 && (
+            <FooterCol title="Social" className="md:col-span-2">
+              {liveSocials.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} target="_blank" rel="noreferrer noopener" className="link-line text-fg-2 hover:text-fg transition-colors">
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </FooterCol>
+          )}
 
           <FooterCol title="Contact" className="md:col-span-2">
             <li>

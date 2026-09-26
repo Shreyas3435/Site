@@ -1,7 +1,9 @@
 import { AnimatePresence, motion } from "motion/react";
-import { useId, useState, type FormEvent, type ReactNode } from "react";
-import { site, socials } from "@/content/site";
-import { submitEnquiry, validateEnquiry, type Enquiry, type EnquiryErrors } from "@/lib/enquiry";
+import { useEffect, useId, useState, type FormEvent, type ReactNode } from "react";
+import { timelines as TIMELINES } from "@/content/planner";
+import { liveSocials, site } from "@/content/site";
+import { useBriefDraft } from "@/lib/brief";
+import { submitEnquiry, validateEnquiry, type Enquiry, type EnquiryErrors, type EnquiryResult } from "@/lib/enquiry";
 import { cn } from "@/lib/cn";
 import { EASE_OUT } from "@/lib/easing";
 import { Button } from "@/components/ui/Button";
@@ -11,8 +13,6 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Corners } from "@/components/ui/Placeholder";
 
 const BUDGETS = ["< $10k", "$10–25k", "$25–75k", "$75k+", "Not sure yet"];
-const TIMELINES = ["ASAP", "1–3 months", "3–6 months", "Flexible"];
-
 export function ContactSection({ asPage = false }: { asPage?: boolean }) {
   return (
     <section
@@ -22,7 +22,7 @@ export function ContactSection({ asPage = false }: { asPage?: boolean }) {
     >
       <div className="shell grid gap-16 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-5">
-          <SectionLabel index={asPage ? undefined : "09"}>Contact</SectionLabel>
+          <SectionLabel index={asPage ? undefined : "11"}>Contact</SectionLabel>
           <RevealText
             as={asPage ? "h1" : "h2"}
             id="contact-title"
@@ -41,24 +41,41 @@ export function ContactSection({ asPage = false }: { asPage?: boolean }) {
               <CopyEmail />
             </div>
 
-            <div>
-              <p className="eyebrow text-dim">Elsewhere</p>
-              <ul className="mt-3 border-t border-line">
-                {socials.map((s) => (
-                  <li key={s.label} className="border-b border-line">
-                    <a
-                      href={s.href}
-                      className="group flex items-center justify-between py-3.5 transition-colors hover:text-accent"
-                    >
-                      <span className="font-medium">{s.label}</span>
-                      <span className="flex items-center gap-3 eyebrow text-muted group-hover:text-accent">
-                        {s.handle} <SlidingArrow dir="up-right" />
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {liveSocials.length > 0 && (
+              <div>
+                <p className="eyebrow text-dim">Elsewhere</p>
+                <ul className="mt-3 border-t border-line">
+                  {liveSocials.map((s) => (
+                    <li key={s.label} className="border-b border-line">
+                      <a
+                        href={s.href}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="group flex items-center justify-between py-3.5 transition-colors hover:text-accent"
+                      >
+                        <span className="font-medium">{s.label}</span>
+                        <span className="flex items-center gap-3 eyebrow text-muted group-hover:text-accent">
+                          {s.handle} <SlidingArrow dir="up-right" />
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <ul className="grid grid-cols-3 gap-px border border-line bg-line">
+              {[
+                ["4", "Senior engineers"],
+                ["1 call", "To scope it"],
+                ["0", "Hand-offs"],
+              ].map(([v, l]) => (
+                <li key={l} className="bg-ink px-4 py-5">
+                  <p className="text-xl font-medium tracking-tight">{v}</p>
+                  <p className="mt-1 eyebrow text-[0.5625rem] text-muted">{l}</p>
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
 
@@ -107,6 +124,15 @@ function EnquiryForm() {
   const [values, setValues] = useState<Enquiry>({ name: "", email: "", company: "", brief: "", budget: "", timeline: "" });
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const [via, setVia] = useState<EnquiryResult["via"]>("endpoint");
+  const draft = useBriefDraft();
+
+  // A brief drafted in the planner flows straight into the form.
+  useEffect(() => {
+    if (!draft) return;
+    setValues((prev) => ({ ...prev, brief: draft.brief, timeline: draft.timeline ?? prev.timeline }));
+    setStatus("idle");
+  }, [draft]);
 
   const set = (k: keyof Enquiry) => (v: string) => {
     setValues((prev) => ({ ...prev, [k]: v }));
@@ -124,7 +150,8 @@ function EnquiryForm() {
     }
     setStatus("sending");
     try {
-      await submitEnquiry(values);
+      const res = await submitEnquiry(values);
+      setVia(res.via);
       setStatus("sent");
     } catch {
       setStatus("error");
@@ -173,7 +200,9 @@ function EnquiryForm() {
             </svg>
             <p className="mt-8 text-heading font-medium">Thanks, {values.name.split(" ")[0] || "there"}.</p>
             <p className="mt-3 max-w-sm text-fg-2">
-              Your message is in. We read every enquiry ourselves and will reply to {values.email}.
+              {via === "email"
+                ? "Your email app should now be open with the enquiry written out — just hit send. We read every enquiry ourselves."
+                : `Your message is in. We read every enquiry ourselves and will reply to ${values.email}.`}
             </p>
             <button
               type="button"

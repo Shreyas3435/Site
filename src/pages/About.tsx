@@ -5,7 +5,8 @@ import { Manifesto } from "@/components/sections/Manifesto";
 import { Principles } from "@/components/sections/Principles";
 import { Process } from "@/components/sections/Process";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { TeamGrid } from "@/components/sections/Team";
+import { CrewGrid } from "@/components/sections/Crew";
+import { FAQ } from "@/components/sections/FAQ";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
@@ -31,7 +32,7 @@ export default function About() {
       <PageHero
         label="About"
         lines={["Engineers who like", "difficult things."]}
-        intro={`${site.name} is a small collective of experienced technologists. We work independently and together — engineering, product, AI and design — on the problems that don't fit neatly into a template.`}
+        intro={`${site.name} is a team of four experienced engineers. We work independently and together — engineering, product, AI and design — on the problems that don't fit neatly into a template.`}
       />
 
       <Manifesto />
@@ -60,19 +61,21 @@ export default function About() {
             <div className="md:col-span-7">
               <SectionLabel>Team</SectionLabel>
               <h2 id="team-title" className="mt-8 text-title font-medium uppercase">
-                The people you'll work with.
+                A team of four.
               </h2>
             </div>
-            <p className="text-muted md:col-span-4 md:col-start-9">
-              [ Placeholder — team profiles, portraits and links will be added here. ]
+            <p className="text-fg-2 md:col-span-4 md:col-start-9">
+              Four senior engineers, each experienced in the technology their layer needs. Small enough that you
+              always talk to the builders; broad enough to cover the whole stack.
             </p>
           </div>
-          <TeamGrid detailed className="mt-16 md:mt-24" />
+          <CrewGrid className="mt-16 md:mt-24" />
         </div>
       </section>
 
       <Principles />
       <Process />
+      <FAQ />
       <FinalCTA />
     </>
   );

@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from "react-router";
 import { scrollToTarget, useLenis } from "@/lib/smooth-scroll";
 import { Cursor } from "@/components/cursor/Cursor";
 import { Header } from "./Header";
+import { FloatingCTA } from "./FloatingCTA";
 import { Footer } from "./Footer";
 import { PageShell } from "./PageShell";
 import { ScrollProgress } from "./ScrollProgress";
@@ -69,6 +70,7 @@ export function Layout() {
         </PageShell>
       </AnimatePresence>
 
+      <FloatingCTA />
       <Cursor />
       <div aria-hidden="true" className="grain" />
     </>

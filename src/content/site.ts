@@ -33,6 +33,10 @@ export const nav: NavItem[] = [
   { label: "Work", to: "/work" },
   { label: "Capabilities", to: "/capabilities" },
   { label: "Process", to: "/#process" },
+  { label: "Planner", to: "/#planner" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ];
+
+/** Profiles still set to "#" are hidden until real links are added. */
+export const liveSocials = socials.filter((s) => s.href && s.href !== "#");

@@ -41,56 +41,63 @@ export const principles = [
   { lead: "Optimize for", rest: "the long term." },
 ];
 
-export type TeamMember = {
-  name: string;
-  role: string;
-  focus: string[];
-  bio: string;
-  /** PLACEHOLDER — path to a portrait, e.g. "/team/name.webp". */
-  photo?: string;
-  links: { label: "LinkedIn" | "GitHub" | "Website"; href: string }[];
+/**
+ * The crew. Deliberately no names or portraits — the studio is presented as
+ * one team of four, each experienced in the technology their layer needs.
+ */
+export const crew = {
+  size: 4,
+  disciplines: [
+    {
+      code: "SRV",
+      title: "Backend & Search",
+      body: "APIs, data models and search systems that stay correct under real traffic.",
+      stack: ["Python", "FastAPI", "Node.js", "PostgreSQL", "Elasticsearch"],
+    },
+    {
+      code: "UI",
+      title: "Frontend & Product",
+      body: "Fast, accessible interfaces and design systems people enjoy using.",
+      stack: ["React", "Next.js", "TypeScript", "Tailwind", "Motion"],
+    },
+    {
+      code: "AI",
+      title: "AI & Machine Learning",
+      body: "LLMs, retrieval and ranking — grounded in your data and properly evaluated.",
+      stack: ["LLMs", "RAG", "Embeddings", "PyTorch", "Evals"],
+    },
+    {
+      code: "OPS",
+      title: "Cloud & Infrastructure",
+      body: "Deploys that are routine, costs that are understood, scaling that is a setting.",
+      stack: ["AWS", "Azure", "Docker", "Kubernetes", "Terraform"],
+    },
+  ],
 };
 
-/** PLACEHOLDER TEAM — replace with real people. */
-export const team: TeamMember[] = [
+export const faqs = [
   {
-    name: "Team Member",
-    role: "Engineering — Backend & Search",
-    focus: ["Search", "APIs", "Data"],
-    bio: "[ Placeholder bio — two or three sentences on background and what they like building. ]",
-    links: [
-      { label: "LinkedIn", href: "#" },
-      { label: "GitHub", href: "#" },
-    ],
+    q: "What kind of projects do you take on?",
+    a: "New products (websites, web apps, MVPs, internal tools) and improvements to existing ones — search, performance, AI features, automation and cloud. If it's technical and it matters to your business, it's worth a conversation.",
   },
   {
-    name: "Team Member",
-    role: "Engineering — Frontend & Product",
-    focus: ["Interfaces", "Design systems", "Performance"],
-    bio: "[ Placeholder bio — two or three sentences on background and what they like building. ]",
-    links: [
-      { label: "LinkedIn", href: "#" },
-      { label: "GitHub", href: "#" },
-    ],
+    q: "Who will actually work on my project?",
+    a: "The four of us. There are no account managers and no junior bench — the engineers you talk to on the first call are the ones who design and build it.",
   },
   {
-    name: "Team Member",
-    role: "AI / ML Engineering",
-    focus: ["LLMs", "Retrieval", "Evaluation"],
-    bio: "[ Placeholder bio — two or three sentences on background and what they like building. ]",
-    links: [
-      { label: "LinkedIn", href: "#" },
-      { label: "GitHub", href: "#" },
-    ],
+    q: "How do engagements usually start?",
+    a: "With a short call to understand the problem, then a written proposal covering scope, approach, timeline and cost. Small, well-defined problems can start within days.",
   },
   {
-    name: "Team Member",
-    role: "Infrastructure & Cloud",
-    focus: ["Cloud", "DevOps", "Reliability"],
-    bio: "[ Placeholder bio — two or three sentences on background and what they like building. ]",
-    links: [
-      { label: "LinkedIn", href: "#" },
-      { label: "GitHub", href: "#" },
-    ],
+    q: "Can you work with our existing team and codebase?",
+    a: "Yes. A lot of our work is stepping into existing systems. We can own a problem end to end, or embed alongside your engineers and pair on the hard parts.",
+  },
+  {
+    q: "What does it cost?",
+    a: "It depends on scope, so we don't publish fixed prices. Share a rough budget range in the form and we'll tell you honestly what's realistic within it — including when a smaller first phase makes more sense.",
+  },
+  {
+    q: "What happens after launch?",
+    a: "Your choice: a clean handover with documentation, or ongoing care where we keep measuring, improving and scaling the system with you.",
   },
 ];

@@ -16,21 +16,29 @@ All content is data in `src/content/`. Components only render it, so real detail
 | What | Where |
 | --- | --- |
 | Studio name, tagline, email, status line, location/timezone | `src/content/site.ts` → `site` |
-| Social links | `src/content/site.ts` → `socials` |
+| Social links | `src/content/site.ts` → `socials` (profiles left as `"#"` are hidden automatically) |
 | Navigation | `src/content/site.ts` → `nav` |
 | **Logo** | `src/components/ui/LogoSlot.tsx`. It's a fixed ~120×28 box, so swap the inner `<span>`s for an `<svg>`/`<img>` without changing the layout |
 | Capabilities (5 domains × 4 items) | `src/content/capabilities.ts` |
 | "Already have a product?" rows | `src/content/diagnostics.ts` |
-| **Case studies** | `src/content/projects.ts`. Add `images[].src` (e.g. `/work/search-01.webp` in `public/`) and the real screenshot replaces the abstract preview automatically |
-| **Team** | `src/content/studio.ts` → `team`. Set `photo` to show a portrait. The grid adapts to any count |
+| **Case studies** | `src/content/projects.ts`. Representative engagements (no invented clients or results). Add `images[].src` (e.g. `/work/search-01.webp` in `public/`) and the real screenshot replaces the abstract preview automatically |
+| **Team** | `src/content/studio.ts` → `crew`. Presented as one team of four with the disciplines and stack each covers — no names or portraits |
+| FAQ | `src/content/studio.ts` → `faqs` |
+| Project planner options | `src/content/planner.ts` |
 | Tech stack, process steps, principles | `src/content/studio.ts` |
 | Page `<title>` / meta description | `index.html` and `src/hooks/useDocumentTitle.ts` |
 
-Placeholder copy is marked with `[ Placeholder ]` or `PLACEHOLDER` comments. No client names, metrics, testimonials or results are invented anywhere.
+Remaining placeholders (studio name, email, logo, socials, location) are marked `PLACEHOLDER` in `src/content/site.ts` and `LogoSlot.tsx`. No client names, metrics, testimonials or results are invented anywhere.
 
-## Connecting the contact form
+## Contact form
 
-`src/lib/enquiry.ts` has `validateEnquiry` and `submitEnquiry`. Right now `submitEnquiry` only fakes a delay. Replace its body with a real request (API route, form service, CRM webhook). The form already handles the pending, success and error states based on that promise.
+`src/lib/enquiry.ts` submits enquiries. Set `VITE_ENQUIRY_ENDPOINT` (e.g. a Formspree / Web3Forms URL, a CRM webhook or your own API route) in `.env.local` or your host's env settings and enquiries are POSTed there as JSON. Without it, submitting opens the visitor's email app with the enquiry pre-written to `site.email`.
+
+## Interactive pieces
+
+- **Project planner** (`sections/Planner.tsx`, home `#planner`): visitors pick needs, stage and timeline; the console assembles the crew, engagement shape and a draft brief, and "Use this brief" pre-fills the enquiry form (via `lib/brief.ts`).
+- **Floating CTA** (`layout/FloatingCTA.tsx`): appears after the hero, hides over the planner and contact form.
+- **Crew grid** with pointer-follow spotlight (`ui/Spotlight.tsx`), **FAQ** accordion (`sections/FAQ.tsx`).
 
 ## Structure
 

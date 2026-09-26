@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef } from "react";
-import { nav, site, socials } from "@/content/site";
+import { liveSocials, nav, site } from "@/content/site";
 import { EASE_IN_OUT, EASE_OUT } from "@/lib/easing";
 import { useLocalTime } from "@/hooks/useLocalTime";
 import { SmartLink } from "@/components/ui/SmartLink";
@@ -106,16 +106,20 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                     {site.email}
                   </a>
                 </div>
-                <div className="space-y-2">
-                  <p className="eyebrow text-dim">Social</p>
-                  <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-fg-2">
-                    {socials.map((s) => (
-                      <li key={s.label}>
-                        <a href={s.href}>{s.label}</a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {liveSocials.length > 0 && (
+                  <div className="space-y-2">
+                    <p className="eyebrow text-dim">Social</p>
+                    <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-fg-2">
+                      {liveSocials.map((s) => (
+                        <li key={s.label}>
+                          <a href={s.href} target="_blank" rel="noreferrer noopener">
+                            {s.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
               <div className="flex items-center justify-between border-t border-line pt-5 eyebrow text-muted">
                 <StatusDot label={site.status} />

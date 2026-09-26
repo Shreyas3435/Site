@@ -78,7 +78,7 @@ export default function CaseStudy() {
 
       {/* meta */}
       <section aria-label="Project details" className="shell mt-16 grid gap-10 border-b border-line pb-16 md:grid-cols-12">
-        <Meta title="Client" className="md:col-span-3">
+        <Meta title="Engagement" className="md:col-span-3">
           <p className="text-fg-2">{project.client}</p>
         </Meta>
         <Meta title="Scope" className="md:col-span-5">
@@ -111,11 +111,10 @@ export default function CaseStudy() {
             </div>
             <Reveal className="md:col-span-7 md:col-start-6">
               <p className="text-lede text-fg-2">{s.body}</p>
-              {k === 1 && project.images[1] && (
+              {k === 1 && project.images[1]?.src && (
                 <MediaSlot
                   src={project.images[1].src}
                   alt={project.images[1].alt}
-                  label="Image slot"
                   className="mt-10 aspect-[16/10] border border-line"
                 />
               )}
