@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
+import { Logo } from "@/components/Logo";
 import { liveSocials, nav, site } from "@/content/site";
 import { useLocalTime } from "@/hooks/useLocalTime";
 import { scrollToTarget, useLenis } from "@/lib/smooth-scroll";
-import { LogoSlot } from "@/components/ui/LogoSlot";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { StatusDot } from "@/components/ui/StatusDot";
 import { SlidingArrow } from "@/components/ui/Arrow";
@@ -17,7 +17,8 @@ export function Footer() {
       <div className="shell py-16 md:py-24">
         <div className="grid gap-14 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
-            <LogoSlot />
+            <Logo animated={false} />
+            <p className="mt-4 eyebrow text-muted">ARKA · ENGINEERING STUDIO</p>
             <p className="mt-6 max-w-sm text-lede text-fg-2 text-balance-pretty">{site.tagline}</p>
           </div>
 

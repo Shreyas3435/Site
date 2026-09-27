@@ -21,7 +21,7 @@ const WAYS = [
   },
   {
     title: "Alongside",
-    body: "We embed with your team, pair on the hard parts and leave the system — and the people — stronger.",
+    body: "We embed with your team, pair on the toughest problems and leave the system — and the people — stronger.",
   },
 ];
 

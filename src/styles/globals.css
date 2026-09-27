@@ -190,6 +190,36 @@
   background-position: 0% 100%;
 }
 
+/* Arka brand mark (src/components/Logo.tsx) */
+/* the mitred apex pokes ~1 unit above the viewBox; let it show instead of clipping the tip */
+.ar-mark { overflow: visible; }
+.ar-a   { fill: none; stroke: currentColor; stroke-width: 5; stroke-linejoin: miter; }
+.ar-sun { fill: #ff5b2e; transition: transform .8s cubic-bezier(.16,1,.3,1); }
+.ar-ray { fill: none; stroke: #ff5b2e; stroke-width: 1; opacity: 0; transform-box: view-box; transform-origin: 24px 34px; }
+.ar-word { letter-spacing: .38em; }
+
+/* intro: the A draws itself, the sun rises over the horizon, the wordmark tracks in */
+/* dash length must cover the full polyline (~83.3 units) or the right foot stays undrawn */
+.ar-animated .ar-a   { stroke-dasharray: 84; stroke-dashoffset: 84; animation: ar-draw 1.1s cubic-bezier(.65,0,.35,1) forwards; }
+.ar-animated .ar-sun { transform: translateY(7px); animation: ar-rise 1.1s cubic-bezier(.16,1,.3,1) .9s forwards; }
+.ar-word.ar-animated { opacity: 0; letter-spacing: .9em; animation: ar-track 1.3s cubic-bezier(.16,1,.3,1) .9s forwards; }
+
+/* hover: the sun lifts and sends out a ray */
+a:hover .ar-sun, a:focus-visible .ar-sun { animation: none; transform: translateY(-1.5px); }
+a:hover .ar-ray, a:focus-visible .ar-ray { animation: ar-pulse 1.6s cubic-bezier(.16,1,.3,1) infinite; }
+
+@keyframes ar-draw  { to { stroke-dashoffset: 0; } }
+@keyframes ar-rise  { to { transform: translateY(0); } }
+@keyframes ar-track { to { opacity: 1; letter-spacing: .38em; } }
+@keyframes ar-pulse { 0% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(2.1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ar-a, .ar-sun, .ar-ray, .ar-word { animation: none !important; transition: none; }
+  .ar-a { stroke-dashoffset: 0 !important; }
+  .ar-sun { transform: none !important; }
+  .ar-word { opacity: 1 !important; letter-spacing: .38em; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

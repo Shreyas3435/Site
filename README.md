@@ -1,4 +1,4 @@
-# Studio site — phase 1 (frontend)
+# Arka site — phase 1 (frontend)
 
 React 19 + TypeScript + Vite + Tailwind v4. Animation with `motion`, smooth scroll with `lenis`, routing with `react-router`.
 
@@ -18,7 +18,7 @@ All content is data in `src/content/`. Components only render it, so real detail
 | Studio name, tagline, email, status line, location/timezone | `src/content/site.ts` → `site` |
 | Social links | `src/content/site.ts` → `socials` (profiles left as `"#"` are hidden automatically) |
 | Navigation | `src/content/site.ts` → `nav` |
-| **Logo** | `src/components/ui/LogoSlot.tsx`. It's a fixed ~120×28 box, so swap the inner `<span>`s for an `<svg>`/`<img>` without changing the layout |
+| **Logo** | `src/components/Logo.tsx` (`<Logo />` mark + wordmark, `<LogoMark />` mark only; `animated={false}` for static use). Animation styles live in `src/styles/globals.css` under `.ar-*`. Favicon: `public/favicon.svg`. On light backgrounds: A `#09090a`, sun `#ff5b2e`, wordmark `#09090a` |
 | Capabilities (5 domains × 4 items) | `src/content/capabilities.ts` |
 | "Already have a product?" rows | `src/content/diagnostics.ts` |
 | **Case studies** | `src/content/projects.ts`. Representative engagements (no invented clients or results). Add `images[].src` (e.g. `/work/search-01.webp` in `public/`) and the real screenshot replaces the abstract preview automatically |
@@ -28,11 +28,26 @@ All content is data in `src/content/`. Components only render it, so real detail
 | Tech stack, process steps, principles | `src/content/studio.ts` |
 | Page `<title>` / meta description | `index.html` and `src/hooks/useDocumentTitle.ts` |
 
-Remaining placeholders (studio name, email, logo, socials, location) are marked `PLACEHOLDER` in `src/content/site.ts` and `LogoSlot.tsx`. No client names, metrics, testimonials or results are invented anywhere.
+Remaining placeholders (email, socials, location) are marked `PLACEHOLDER` in `src/content/site.ts`. No client names, metrics, testimonials or results are invented anywhere.
 
 ## Contact form
 
-`src/lib/enquiry.ts` submits enquiries. Set `VITE_ENQUIRY_ENDPOINT` (e.g. a Formspree / Web3Forms URL, a CRM webhook or your own API route) in `.env.local` or your host's env settings and enquiries are POSTed there as JSON. Without it, submitting opens the visitor's email app with the enquiry pre-written to `site.email`.
+Enquiries go to your inbox through [Web3Forms](https://web3forms.com) (free, no backend). Create an access key there with the inbox you want enquiries delivered to, then put it in `.env.local`:
+
+```bash
+VITE_WEB3FORMS_KEY=your-access-key
+```
+
+It's baked in at build time, so rebuild and redeploy after changing it. The key is meant to be public, so it's safe in the browser bundle. A hidden honeypot field (`botcheck`) filters out simple bots. `src/lib/enquiry.ts` also supports `VITE_ENQUIRY_ENDPOINT` (any JSON endpoint). With neither set, submitting opens the visitor's email app with the enquiry written out to `site.email`.
+
+## Hosting (Cloudflare Pages)
+
+```bash
+npx wrangler login   # once, opens the browser
+npm run deploy       # builds and uploads dist/ to the "arka" Pages project
+```
+
+The site is served at `https://arka.pages.dev` (or a similar name if that one's taken). Pages falls back to `index.html` for unknown paths, so client-side routes like `/work` work on refresh.
 
 ## Interactive pieces
 

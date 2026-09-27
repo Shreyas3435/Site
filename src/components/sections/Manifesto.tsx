@@ -1,23 +1,23 @@
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { useRef } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SunDial } from "@/components/visuals/SunDial";
 
-const TEXT =
-  "We're a small group of engineers who take on work that is technical, ambitious, or simply difficult to get right. Products and platforms, search and AI, backends and infrastructure — if it needs to be built properly, we want to hear about it.";
+const TEXT = "Four engineers. Technical, ambitious work — built properly.";
 
 // Words that pick up the accent once lit.
-const EMPHASIS = new Set(["technical,", "ambitious,", "difficult", "properly,"]);
+const EMPHASIS = new Set(["Technical,", "ambitious", "properly."]);
 
 export function Manifesto() {
   const ref = useRef<HTMLParagraphElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.55"] });
   const words = TEXT.split(" ");
 
   return (
-    <section aria-label="About the studio" className="relative py-28 md:py-44">
+    <section aria-label="About Arka" className="relative py-28 md:py-44">
       <div className="shell grid gap-10 md:grid-cols-12">
         <SectionLabel index="01" className="md:col-span-3 md:pt-4">
-          The studio
+          Arka
         </SectionLabel>
         <p
           ref={ref}
@@ -33,6 +33,7 @@ export function Manifesto() {
           </span>
         </p>
       </div>
+      <SunDial className="shell mt-16 md:mt-24" />
     </section>
   );
 }

@@ -5,6 +5,7 @@ import { EASE_OUT } from "@/lib/easing";
 import { useFinePointer } from "@/hooks/useMediaQuery";
 import { Button } from "@/components/ui/Button";
 import { RevealText } from "@/components/ui/Reveal";
+import { LogoMark } from "@/components/Logo";
 import { SystemOrb } from "@/components/visuals/SystemOrb";
 
 const DISCIPLINES = ["Products", "Platforms", "APIs", "Search", "AI", "Infrastructure"];
@@ -55,13 +56,14 @@ export function Hero() {
         </motion.div>
 
         <div className="flex flex-1 flex-col justify-end pb-10 pt-[42vh] md:justify-center md:pb-0 md:pt-0">
+          <LogoMark size={56} className="mb-8 text-fg md:mb-10" />
           <RevealText
             as="h1"
             id="hero-title"
             immediate
             delay={0.35}
             stagger={0.08}
-            lines={["We build", "the hard parts."]}
+            lines={["Light up", "the stack."]}
             className="text-display font-medium uppercase"
           />
 

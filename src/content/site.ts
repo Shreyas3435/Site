@@ -4,8 +4,8 @@
  */
 
 export const site = {
-  /** PLACEHOLDER — studio name used in copy, titles and the footer. */
-  name: "Studio",
+  /** Studio name used in copy, titles and the footer. Arka: Sanskrit for the sun, a ray of light. */
+  name: "Arka",
   tagline: "Engineering digital products, systems and experiences.",
   description:
     "A small engineering studio building products, platforms and technical systems for founders, startups and businesses that need more than off-the-shelf solutions.",

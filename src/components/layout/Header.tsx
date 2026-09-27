@@ -5,8 +5,8 @@ import { nav } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { EASE_OUT } from "@/lib/easing";
 import { useLenis } from "@/lib/smooth-scroll";
+import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/Button";
-import { LogoSlot } from "@/components/ui/LogoSlot";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { MobileMenu } from "./MobileMenu";
 
@@ -57,8 +57,8 @@ export function Header() {
           )}
         />
         <div className="shell relative flex h-[var(--header-h)] items-center justify-between">
-          <SmartLink to="/" aria-label="Home" className="relative z-[70] -m-2 p-2" data-cursor="">
-            <LogoSlot />
+          <SmartLink to="/" aria-label="Arka home" className="relative z-[70] -m-2 w-auto p-2" data-cursor="">
+            <Logo />
           </SmartLink>
 
           <nav aria-label="Primary" className="hidden items-center gap-10 lg:flex">

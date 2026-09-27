@@ -90,7 +90,7 @@ export const faqs = [
   },
   {
     q: "Can you work with our existing team and codebase?",
-    a: "Yes. A lot of our work is stepping into existing systems. We can own a problem end to end, or embed alongside your engineers and pair on the hard parts.",
+    a: "Yes. A lot of our work is stepping into existing systems. We can own a problem end to end, or embed alongside your engineers and pair on the problems that matter most.",
   },
   {
     q: "What does it cost?",

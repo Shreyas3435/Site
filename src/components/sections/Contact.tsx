@@ -125,6 +125,7 @@ function EnquiryForm() {
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [status, setStatus] = useState<Status>("idle");
   const [via, setVia] = useState<EnquiryResult["via"]>("endpoint");
+  const [botcheck, setBotcheck] = useState("");
   const draft = useBriefDraft();
 
   // A brief drafted in the planner flows straight into the form.
@@ -150,7 +151,7 @@ function EnquiryForm() {
     }
     setStatus("sending");
     try {
-      const res = await submitEnquiry(values);
+      const res = await submitEnquiry(values, botcheck);
       setVia(res.via);
       setStatus("sent");
     } catch {
@@ -225,6 +226,17 @@ function EnquiryForm() {
             className="space-y-8"
             aria-describedby="form-note"
           >
+            {/* honeypot — hidden from people, filled in by bots */}
+            <input
+              type="text"
+              name="botcheck"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              value={botcheck}
+              onChange={(e) => setBotcheck(e.target.value)}
+              className="absolute -left-[9999px] h-px w-px opacity-0"
+            />
             <div className="grid gap-8 sm:grid-cols-2">
               <Field name="name" label="Name" value={values.name} onChange={set("name")} error={errors.name} autoComplete="name" required />
               <Field
