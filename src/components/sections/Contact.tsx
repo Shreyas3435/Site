@@ -3,7 +3,7 @@ import { useEffect, useId, useState, type FormEvent, type ReactNode } from "reac
 import { timelines as TIMELINES } from "@/content/planner";
 import { liveSocials, site } from "@/content/site";
 import { useBriefDraft } from "@/lib/brief";
-import { submitEnquiry, validateEnquiry, type Enquiry, type EnquiryErrors, type EnquiryResult } from "@/lib/enquiry";
+import { submitEnquiry, validateEnquiry, type Enquiry, type EnquiryErrors } from "@/lib/enquiry";
 import { cn } from "@/lib/cn";
 import { EASE_OUT } from "@/lib/easing";
 import { Button } from "@/components/ui/Button";
@@ -124,8 +124,7 @@ function EnquiryForm() {
   const [values, setValues] = useState<Enquiry>({ name: "", email: "", company: "", brief: "", budget: "", timeline: "" });
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [status, setStatus] = useState<Status>("idle");
-  const [via, setVia] = useState<EnquiryResult["via"]>("endpoint");
-  const [botcheck, setBotcheck] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const draft = useBriefDraft();
 
   // A brief drafted in the planner flows straight into the form.
@@ -151,8 +150,7 @@ function EnquiryForm() {
     }
     setStatus("sending");
     try {
-      const res = await submitEnquiry(values, botcheck);
-      setVia(res.via);
+      await submitEnquiry(values, honeypot);
       setStatus("sent");
     } catch {
       setStatus("error");
@@ -201,9 +199,7 @@ function EnquiryForm() {
             </svg>
             <p className="mt-8 text-heading font-medium">Thanks, {values.name.split(" ")[0] || "there"}.</p>
             <p className="mt-3 max-w-sm text-fg-2">
-              {via === "email"
-                ? "Your email app should now be open with the enquiry written out — just hit send. We read every enquiry ourselves."
-                : `Your message is in. We read every enquiry ourselves and will reply to ${values.email}.`}
+              {`Your message is in. We read every enquiry ourselves and will reply to ${values.email}.`}
             </p>
             <button
               type="button"
@@ -229,12 +225,12 @@ function EnquiryForm() {
             {/* honeypot — hidden from people, filled in by bots */}
             <input
               type="text"
-              name="botcheck"
+              name="_honey"
               tabIndex={-1}
               autoComplete="off"
               aria-hidden="true"
-              value={botcheck}
-              onChange={(e) => setBotcheck(e.target.value)}
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
               className="absolute -left-[9999px] h-px w-px opacity-0"
             />
             <div className="grid gap-8 sm:grid-cols-2">

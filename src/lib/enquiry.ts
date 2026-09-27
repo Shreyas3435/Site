@@ -1,12 +1,12 @@
 import { site } from "@/content/site";
 
 /**
- * Project enquiry submission, tried in this order:
- *  1. `VITE_WEB3FORMS_KEY` → sent through Web3Forms, which emails it to the
- *     inbox the key was created for. No backend needed.
- *  2. `VITE_ENQUIRY_ENDPOINT` → POSTed as JSON to any other endpoint
- *     (Formspree, a CRM webhook, your own API route).
- *  3. Neither → opens the visitor's email app with the enquiry pre-written.
+ * Project enquiry submission.
+ * Enquiries are sent through FormSubmit (formsubmit.co), which emails each one
+ * to `site.email`. No backend or API key: the first submission triggers a
+ * one-time "Activate form" email to that inbox, and everything after that is
+ * delivered straight through. Replies go to the visitor, because FormSubmit
+ * uses their `email` field as the reply-to address.
  */
 
 export type Enquiry = {
@@ -29,57 +29,28 @@ export function validateEnquiry(e: Enquiry): EnquiryErrors {
   return errors;
 }
 
-export type EnquiryResult = { ok: true; via: "endpoint" | "email" };
+export type EnquiryResult = { ok: true };
 
-const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
-const ENDPOINT = import.meta.env.VITE_ENQUIRY_ENDPOINT as string | undefined;
+const ENDPOINT = `https://formsubmit.co/ajax/${site.email}`;
 
-/** `botcheck` is the honeypot field: real people never see it, so anything in it is a bot. */
-export async function submitEnquiry(payload: Enquiry, botcheck = ""): Promise<EnquiryResult> {
-  if (WEB3FORMS_KEY) {
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_KEY,
-        subject: `New project enquiry — ${payload.name}${payload.company ? ` (${payload.company})` : ""}`,
-        from_name: `${site.name} website`,
-        botcheck,
-        name: payload.name,
-        email: payload.email,
-        company: payload.company || "—",
-        budget: payload.budget || "—",
-        timeline: payload.timeline || "—",
-        message: payload.brief,
-      }),
-    });
-    const json = (await res.json().catch(() => null)) as { success?: boolean } | null;
-    if (!res.ok || !json?.success) throw new Error(`Web3Forms responded ${res.status}`);
-    return { ok: true, via: "endpoint" };
-  }
-
-  if (ENDPOINT) {
-    const res = await fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ ...payload, _subject: `New project enquiry — ${payload.name}` }),
-    });
-    if (!res.ok) throw new Error(`Enquiry endpoint responded ${res.status}`);
-    return { ok: true, via: "endpoint" };
-  }
-
-  const body = [
-    payload.brief,
-    "",
-    `Name: ${payload.name}`,
-    `Email: ${payload.email}`,
-    payload.company && `Company: ${payload.company}`,
-    payload.budget && `Budget: ${payload.budget}`,
-    payload.timeline && `Timeline: ${payload.timeline}`,
-  ]
-    .filter((l) => l !== undefined && l !== "")
-    .join("\n");
-  const subject = `Project enquiry — ${payload.name}${payload.company ? ` (${payload.company})` : ""}`;
-  window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  return { ok: true, via: "email" };
+/** `honeypot` is a field real people never see, so anything in it means a bot. */
+export async function submitEnquiry(payload: Enquiry, honeypot = ""): Promise<EnquiryResult> {
+  const res = await fetch(ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      _subject: `New project enquiry — ${payload.name}${payload.company ? ` (${payload.company})` : ""}`,
+      _template: "table",
+      _honey: honeypot,
+      Name: payload.name,
+      email: payload.email,
+      Company: payload.company || "—",
+      Budget: payload.budget || "—",
+      Timeline: payload.timeline || "—",
+      Brief: payload.brief,
+    }),
+  });
+  const json = (await res.json().catch(() => null)) as { success?: boolean | string } | null;
+  if (!res.ok || String(json?.success) !== "true") throw new Error(`FormSubmit responded ${res.status}`);
+  return { ok: true };
 }

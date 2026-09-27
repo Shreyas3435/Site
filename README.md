@@ -32,13 +32,7 @@ Remaining placeholders (socials, location) are marked `PLACEHOLDER` in `src/cont
 
 ## Contact form
 
-Enquiries go to your inbox through [Web3Forms](https://web3forms.com) (free, no backend). Create an access key there with the inbox you want enquiries delivered to, then put it in `.env.local`:
-
-```bash
-VITE_WEB3FORMS_KEY=your-access-key
-```
-
-It's baked in at build time, so rebuild and redeploy after changing it. The key is meant to be public, so it's safe in the browser bundle. A hidden honeypot field (`botcheck`) filters out simple bots. `src/lib/enquiry.ts` also supports `VITE_ENQUIRY_ENDPOINT` (any JSON endpoint). With neither set, submitting opens the visitor's email app with the enquiry written out to `site.email`.
+Enquiries are emailed to `site.email` (arkatechworks@gmail.com) through [FormSubmit](https://formsubmit.co). There's no backend and no API key. The first time anyone submits the live form, FormSubmit sends an **"Activate form"** email to that inbox. Click it once and every enquiry after that arrives as an email, with reply-to set to the visitor. A hidden honeypot field (`_honey`) filters out simple bots. The logic is in `src/lib/enquiry.ts`.
 
 ## Hosting (Cloudflare Pages)
 
