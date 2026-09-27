@@ -9,8 +9,8 @@ export const site = {
   tagline: "Engineering digital products, systems and experiences.",
   description:
     "A small engineering studio building products, platforms and technical systems for founders, startups and businesses that need more than off-the-shelf solutions.",
-  /** PLACEHOLDER — real inbox. */
-  email: "hello@yourstudio.com",
+  /** Public contact inbox — shown on the site and used by the email-app fallback. */
+  email: "arkatechworks@gmail.com",
   /** Shown in the footer + menu. Keep it honest; switch when capacity changes. */
   status: "Available for select projects",
   /** PLACEHOLDER — base city / timezone for the live clock. */

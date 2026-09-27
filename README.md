@@ -28,7 +28,7 @@ All content is data in `src/content/`. Components only render it, so real detail
 | Tech stack, process steps, principles | `src/content/studio.ts` |
 | Page `<title>` / meta description | `index.html` and `src/hooks/useDocumentTitle.ts` |
 
-Remaining placeholders (email, socials, location) are marked `PLACEHOLDER` in `src/content/site.ts`. No client names, metrics, testimonials or results are invented anywhere.
+Remaining placeholders (socials, location) are marked `PLACEHOLDER` in `src/content/site.ts`. No client names, metrics, testimonials or results are invented anywhere.
 
 ## Contact form
 
