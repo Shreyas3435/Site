@@ -9,6 +9,7 @@ import { CrewGrid } from "@/components/sections/Crew";
 import { FAQ } from "@/components/sections/FAQ";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { TextLink } from "@/components/ui/Button";
 
 const WAYS = [
   {
@@ -68,6 +69,9 @@ export default function About() {
               Four senior engineers, each experienced in the technology their layer needs. Small enough that you
               always talk to the builders; broad enough to cover the whole stack.
             </p>
+            <div className="md:col-span-4 md:col-start-9">
+              <TextLink to="/team">Meet the team</TextLink>
+            </div>
           </div>
           <CrewGrid className="mt-16 md:mt-24" />
         </div>

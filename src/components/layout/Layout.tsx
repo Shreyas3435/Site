@@ -15,6 +15,7 @@ const WorkIndex = lazy(() => import("@/pages/WorkIndex"));
 const CaseStudy = lazy(() => import("@/pages/CaseStudy"));
 const CapabilitiesPage = lazy(() => import("@/pages/CapabilitiesPage"));
 const About = lazy(() => import("@/pages/About"));
+const Team = lazy(() => import("@/pages/Team"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
@@ -61,6 +62,7 @@ export function Layout() {
                 <Route path="/work/:slug" element={<CaseStudy />} />
                 <Route path="/capabilities" element={<CapabilitiesPage />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/team" element={<Team />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

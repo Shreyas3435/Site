@@ -35,6 +35,7 @@ export const nav: NavItem[] = [
   { label: "Process", to: "/#process" },
   { label: "Planner", to: "/#planner" },
   { label: "About", to: "/about" },
+  { label: "Team", to: "/team" },
   { label: "Contact", to: "/contact" },
 ];
 

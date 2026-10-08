@@ -27,7 +27,8 @@ const BLURB: Record<string, string> = {
   "/capabilities": "What we take on",
   "/#process": "How an engagement runs",
   "/#planner": "Scope your project",
-  "/about": "The team behind Arka",
+  "/about": "How we work",
+  "/team": "Who you'd work with",
   "/contact": "Start a conversation",
 };
 
