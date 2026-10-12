@@ -127,7 +127,7 @@ export function Planner() {
                   <li
                     key={d.code}
                     className={cn(
-                      "relative overflow-hidden rounded-sm border px-3 py-3 transition-colors duration-500",
+                      "relative overflow-hidden rounded-sm border px-3 py-3 transition-colors duration-500 last:odd:col-span-2",
                       on ? "border-accent/60 bg-accent/10" : "border-line-2",
                     )}
                   >

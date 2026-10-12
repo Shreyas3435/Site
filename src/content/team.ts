@@ -45,18 +45,6 @@ export const team: TeamMember[] = [
     // PLACEHOLDER
     slug: "engineer-02",
     name: "Engineer 02",
-    role: "Frontend & Product Engineer",
-    code: "UI",
-    experience: "X+ years",
-    bio: "Placeholder bio: two or three sentences on background, the kind of interfaces they enjoy building, and what clients can expect working with them.",
-    specialities: ["Product interfaces & design systems", "Web performance", "Accessibility"],
-    stack: ["React", "Next.js", "TypeScript", "Tailwind", "Motion"],
-    links: placeholderLinks,
-  },
-  {
-    // PLACEHOLDER
-    slug: "engineer-03",
-    name: "Engineer 03",
     role: "AI & Machine Learning Engineer",
     code: "AI",
     experience: "X+ years",
@@ -67,8 +55,8 @@ export const team: TeamMember[] = [
   },
   {
     // PLACEHOLDER
-    slug: "engineer-04",
-    name: "Engineer 04",
+    slug: "engineer-03",
+    name: "Engineer 03",
     role: "Cloud & Infrastructure Engineer",
     code: "OPS",
     experience: "X+ years",

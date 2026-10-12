@@ -5,7 +5,7 @@ import { Corners } from "@/components/ui/Placeholder";
 import { Reveal } from "@/components/ui/Reveal";
 import { Spotlight } from "@/components/ui/Spotlight";
 
-/** The team, presented as one crew of four — no names, just coverage. */
+/** The team, presented as one crew of three — no names, just coverage. */
 export function CrewGrid({ className }: { className?: string }) {
   return (
     <div className={cn("grid gap-px border border-line bg-line lg:grid-cols-12", className)}>
@@ -26,7 +26,7 @@ export function CrewGrid({ className }: { className?: string }) {
 
       <ul className="grid gap-px bg-line sm:grid-cols-2 lg:col-span-8">
         {crew.disciplines.map((d, i) => (
-          <Reveal as="li" key={d.code} delay={i * 0.08} className="bg-ink">
+          <Reveal as="li" key={d.code} delay={i * 0.08} className="bg-ink sm:last:odd:col-span-2">
             <Spotlight className="flex h-full flex-col p-8 md:p-10">
               <div className="flex items-center justify-between eyebrow">
                 <span className="text-accent">[{String(i + 1).padStart(2, "0")}]</span>

@@ -18,7 +18,7 @@ const WAYS = [
   },
   {
     title: "Squad",
-    body: "Two to four of us form around a product or platform build, covering design, frontend, backend and infrastructure.",
+    body: "Two or three of us form around a product or platform build, covering design, frontend, backend and infrastructure.",
   },
   {
     title: "Alongside",
@@ -33,7 +33,7 @@ export default function About() {
       <PageHero
         label="About"
         lines={["Engineers who like", "difficult things."]}
-        intro={`${site.name} is a team of four experienced engineers. We work independently and together — engineering, product, AI and design — on the problems that don't fit neatly into a template.`}
+        intro={`${site.name} is a team of three experienced engineers. We work independently and together — engineering, product, AI and design — on the problems that don't fit neatly into a template.`}
       />
 
       <Manifesto />
@@ -62,11 +62,11 @@ export default function About() {
             <div className="md:col-span-7">
               <SectionLabel>Team</SectionLabel>
               <h2 id="team-title" className="mt-8 text-title font-medium uppercase">
-                A team of four.
+                A team of three.
               </h2>
             </div>
             <p className="text-fg-2 md:col-span-4 md:col-start-9">
-              Four senior engineers, each experienced in the technology their layer needs. Small enough that you
+              Three senior engineers, each experienced in the technology their layer needs. Small enough that you
               always talk to the builders; broad enough to cover the whole stack.
             </p>
             <div className="md:col-span-4 md:col-start-9">

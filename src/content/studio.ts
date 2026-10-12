@@ -43,22 +43,16 @@ export const principles = [
 
 /**
  * The crew. Deliberately no names or portraits — the studio is presented as
- * one team of four, each experienced in the technology their layer needs.
+ * one team of three, each experienced in the technology their layer needs.
  */
 export const crew = {
-  size: 4,
+  size: 3,
   disciplines: [
     {
-      code: "SRV",
-      title: "Backend & Search",
-      body: "APIs, data models and search systems that stay correct under real traffic.",
-      stack: ["Python", "FastAPI", "Node.js", "PostgreSQL", "Elasticsearch"],
-    },
-    {
-      code: "UI",
-      title: "Frontend & Product",
-      body: "Fast, accessible interfaces and design systems people enjoy using.",
-      stack: ["React", "Next.js", "TypeScript", "Tailwind", "Motion"],
+      code: "FS",
+      title: "Full-Stack & Product",
+      body: "Product architecture, fast interfaces and the APIs and data behind them — planned end to end.",
+      stack: ["React", "TypeScript", "Node.js", "Python", "PostgreSQL"],
     },
     {
       code: "AI",
@@ -82,7 +76,7 @@ export const faqs = [
   },
   {
     q: "Who will actually work on my project?",
-    a: "The four of us. There are no account managers and no junior bench — the engineers you talk to on the first call are the ones who design and build it.",
+    a: "The three of us. There are no account managers and no junior bench — the engineers you talk to on the first call are the ones who design and build it.",
   },
   {
     q: "How do engagements usually start?",

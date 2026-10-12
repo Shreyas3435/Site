@@ -12,13 +12,13 @@ export default function Team() {
     <>
       <PageHero
         label="Team"
-        lines={["Four engineers.", "One crew."]}
+        lines={["Three engineers.", "One crew."]}
         intro={`The people behind ${site.name}. Each of us owns a layer of the stack; together we cover the whole thing.`}
       />
 
       <section aria-label="Team members" className="border-t border-line py-16 md:py-24">
         <div className="shell">
-          <ul className="grid gap-px border border-line bg-line md:grid-cols-2">
+          <ul className="grid gap-px border border-line bg-line md:grid-cols-2 xl:grid-cols-3">
             {team.map((m, i) => (
               <Member key={m.slug} member={m} index={i} />
             ))}
@@ -37,7 +37,7 @@ function Member({ member: m, index }: { member: TeamMember; index: number }) {
   const facts = [m.experience, m.location].filter(Boolean).join(" · ");
 
   return (
-    <li id={m.slug} aria-labelledby={`${m.slug}-name`} className="scroll-mt-24 bg-ink">
+    <li id={m.slug} aria-labelledby={`${m.slug}-name`} className="scroll-mt-24 bg-ink md:last:odd:col-span-2 xl:last:odd:col-span-1">
       <Reveal delay={(index % 2) * 0.06} className="flex h-full flex-col p-6 md:p-8">
         <div className="flex items-start gap-5">
           <MediaSlot

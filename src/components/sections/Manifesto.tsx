@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SunDial } from "@/components/visuals/SunDial";
 
-const TEXT = "Four engineers. Technical, ambitious work — built properly.";
+const TEXT = "Three engineers. Technical, ambitious work — built properly.";
 
 // Words that pick up the accent once lit.
 const EMPHASIS = new Set(["Technical,", "ambitious", "properly."]);

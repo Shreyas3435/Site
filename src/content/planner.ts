@@ -1,20 +1,20 @@
 /** Options for the interactive project planner on the home page. */
 
-export type CrewCode = "SRV" | "UI" | "AI" | "OPS";
+export type CrewCode = "FS" | "AI" | "OPS";
 
 export type Need = { id: string; label: string; group: "Build" | "Improve"; crew: CrewCode[] };
 
 export const needs: Need[] = [
-  { id: "website", label: "Website", group: "Build", crew: ["UI"] },
-  { id: "webapp", label: "Web app", group: "Build", crew: ["UI", "SRV"] },
-  { id: "mvp", label: "MVP", group: "Build", crew: ["UI", "SRV", "OPS"] },
-  { id: "internal", label: "Internal tool", group: "Build", crew: ["UI", "SRV"] },
-  { id: "ai", label: "AI features", group: "Improve", crew: ["AI", "SRV"] },
-  { id: "search", label: "Better search", group: "Improve", crew: ["SRV", "AI"] },
-  { id: "perf", label: "Performance", group: "Improve", crew: ["UI", "SRV"] },
-  { id: "automation", label: "Automation", group: "Improve", crew: ["SRV", "AI"] },
+  { id: "website", label: "Website", group: "Build", crew: ["FS"] },
+  { id: "webapp", label: "Web app", group: "Build", crew: ["FS"] },
+  { id: "mvp", label: "MVP", group: "Build", crew: ["FS", "OPS"] },
+  { id: "internal", label: "Internal tool", group: "Build", crew: ["FS"] },
+  { id: "ai", label: "AI features", group: "Improve", crew: ["AI", "FS"] },
+  { id: "search", label: "Better search", group: "Improve", crew: ["FS", "AI"] },
+  { id: "perf", label: "Performance", group: "Improve", crew: ["FS"] },
+  { id: "automation", label: "Automation", group: "Improve", crew: ["FS", "AI"] },
   { id: "cloud", label: "Cloud & DevOps", group: "Improve", crew: ["OPS"] },
-  { id: "legacy", label: "Modernization", group: "Improve", crew: ["SRV", "OPS"] },
+  { id: "legacy", label: "Modernization", group: "Improve", crew: ["FS", "OPS"] },
 ];
 
 export const stages = [
