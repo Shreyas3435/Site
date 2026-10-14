@@ -1,5 +1,6 @@
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { team, type TeamMember } from "@/content/team";
+import { team, upcoming, type TeamMember } from "@/content/team";
+import { cn } from "@/lib/cn";
 import { site } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -18,11 +19,46 @@ export default function Team() {
 
       <section aria-label="Team members" className="border-t border-line py-16 md:py-24">
         <div className="shell">
-          <ul className="grid gap-px border border-line bg-line md:grid-cols-2 xl:grid-cols-3">
-            {team.map((m, i) => (
-              <Member key={m.slug} member={m} index={i} />
-            ))}
-          </ul>
+          <div
+            style={{ paddingTop: `${upcoming.length * 2.75}rem` }}
+            className={cn("relative", team.length === 1 && "mx-auto max-w-2xl")}
+          >
+            {/* profiles still to come, stacked behind the live ones */}
+            {upcoming.map((u, k) => {
+              const depth = upcoming.length - k;
+              return (
+                <div
+                  key={u.code}
+                  aria-hidden="true"
+                  style={{ top: `${k * 2.75}rem`, left: `${depth * 1.25}rem`, right: `${depth * 1.25}rem` }}
+                  className="absolute bottom-8 border border-line bg-ink-2"
+                >
+                  <div className="flex items-center justify-between gap-4 px-5 py-3.5 eyebrow">
+                    <span className="truncate text-muted">
+                      <span className="text-accent">[{String(team.length + k + 1).padStart(2, "0")}]</span>
+                      <span className="hidden sm:inline">&nbsp;&nbsp;{u.code}&nbsp;&nbsp;·</span>&nbsp;&nbsp;{u.role}
+                    </span>
+                    <span className="hidden shrink-0 text-dim sm:inline">Profile coming soon</span>
+                  </div>
+                </div>
+              );
+            })}
+            <ul
+              className={cn(
+                "relative grid gap-px border border-line bg-line",
+                team.length > 1 && "md:grid-cols-2 xl:grid-cols-3",
+              )}
+            >
+              {team.map((m, i) => (
+                <Member key={m.slug} member={m} index={i} />
+              ))}
+            </ul>
+          </div>
+          {upcoming.length > 0 && (
+            <p className="sr-only">
+              Profiles coming soon: {upcoming.map((u) => u.role).join(", ")}.
+            </p>
+          )}
         </div>
       </section>
 
@@ -56,9 +92,9 @@ function Member({ member: m, index }: { member: TeamMember; index: number }) {
             <p className="mt-2 eyebrow text-muted">{facts}</p>
           </div>
         </div>
-  
+
         <p className="mt-6 text-fg-2">{m.bio}</p>
-  
+
         <ul className="mt-5 space-y-2">
           {m.specialities.map((s) => (
             <li key={s} className="flex gap-3 text-fg">
@@ -70,7 +106,7 @@ function Member({ member: m, index }: { member: TeamMember; index: number }) {
             </li>
           ))}
         </ul>
-  
+
         <ul aria-label="Stack" className="mt-6 flex flex-wrap gap-1.5">
           {m.stack.map((t) => (
             <li
@@ -81,7 +117,7 @@ function Member({ member: m, index }: { member: TeamMember; index: number }) {
             </li>
           ))}
         </ul>
-  
+
         {links.length > 0 && (
           <ul className="mt-auto flex flex-wrap gap-x-6 gap-y-2 pt-6 eyebrow">
             {links.map((l) => (

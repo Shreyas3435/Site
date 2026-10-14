@@ -66,7 +66,7 @@ export function ContactSection({ asPage = false }: { asPage?: boolean }) {
 
             <ul className="grid grid-cols-3 gap-px border border-line bg-line">
               {[
-                ["4", "Senior engineers"],
+                ["3", "Engineers"],
                 ["1 call", "To scope it"],
                 ["0", "Hand-offs"],
               ].map(([v, l]) => (

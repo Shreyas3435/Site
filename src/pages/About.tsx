@@ -14,7 +14,7 @@ import { TextLink } from "@/components/ui/Button";
 const WAYS = [
   {
     title: "Solo",
-    body: "One senior engineer owns a focused problem end to end — an audit, a search overhaul, a performance push.",
+    body: "One of us owns a focused problem end to end — an audit, a search overhaul, a performance push.",
   },
   {
     title: "Squad",
@@ -66,7 +66,7 @@ export default function About() {
               </h2>
             </div>
             <p className="text-fg-2 md:col-span-4 md:col-start-9">
-              Three senior engineers, each experienced in the technology their layer needs. Small enough that you
+              Three engineers, each experienced in the technology their layer needs. Small enough that you
               always talk to the builders; broad enough to cover the whole stack.
             </p>
             <div className="md:col-span-4 md:col-start-9">

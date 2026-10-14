@@ -76,7 +76,7 @@ export const faqs = [
   },
   {
     q: "Who will actually work on my project?",
-    a: "The three of us. There are no account managers and no junior bench — the engineers you talk to on the first call are the ones who design and build it.",
+    a: "The three of us. There are no account managers and no middlemen — the engineers you talk to on the first call are the ones who design and build it.",
   },
   {
     q: "How do engagements usually start?",

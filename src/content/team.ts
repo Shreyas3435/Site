@@ -1,7 +1,6 @@
 /**
  * The team page (/team).
- * Entries marked PLACEHOLDER are stand-ins. Replace the text and the page updates;
- * nothing else needs to change.
+ * Full profiles go in `team`; engineers still to be written up go in `upcoming`.
  *  - `photo`: put an image in `public/team/` (square works best) and set the path.
  *  - `location`, `links`: optional; anything missing or left as "#" is hidden.
  */
@@ -41,28 +40,14 @@ export const team: TeamMember[] = [
     stack: ["React", "TypeScript", "Node.js", "Python", "SQL", "LLMs"],
     links: placeholderLinks,
   },
-  {
-    // PLACEHOLDER
-    slug: "engineer-02",
-    name: "Engineer 02",
-    role: "AI & Machine Learning Engineer",
-    code: "AI",
-    experience: "X+ years",
-    bio: "Placeholder bio: two or three sentences on background, the AI systems they've shipped, and how they keep them grounded and measurable.",
-    specialities: ["LLM applications & RAG", "Retrieval & ranking", "Evaluation & quality"],
-    stack: ["LLMs", "RAG", "Embeddings", "PyTorch", "Evals"],
-    links: placeholderLinks,
-  },
-  {
-    // PLACEHOLDER
-    slug: "engineer-03",
-    name: "Engineer 03",
-    role: "Cloud & Infrastructure Engineer",
-    code: "OPS",
-    experience: "X+ years",
-    bio: "Placeholder bio: two or three sentences on background, the infrastructure they've run, and how they keep deploys routine and costs predictable.",
-    specialities: ["Cloud architecture", "CI/CD & deploy automation", "Reliability & cost control"],
-    stack: ["AWS", "Azure", "Docker", "Kubernetes", "Terraform"],
-    links: placeholderLinks,
-  },
+];
+
+/**
+ * Engineers whose profiles aren't written yet. Shown as cards stacked behind the
+ * live profiles, with only the role and "Profile coming soon". When a profile is
+ * ready, delete it from here and add a full entry to `team` above.
+ */
+export const upcoming: { code: string; role: string }[] = [
+  { code: "AI", role: "AI & Machine Learning Engineer" },
+  { code: "OPS", role: "Cloud & Infrastructure Engineer" },
 ];

@@ -19,7 +19,7 @@ export function CrewGrid({ className }: { className?: string }) {
             <CountUp to={crew.size} />
           </p>
           <p className="mt-6 max-w-xs text-fg-2">
-            Senior engineers. Each one experienced in the technology their layer demands — together, the whole stack.
+            Young engineers. Each one experienced in the technology their layer demands — together, the whole stack.
           </p>
         </div>
       </Reveal>

@@ -22,7 +22,7 @@ export function AboutTeaser() {
               services, data, AI and cloud. Sometimes one of us takes a project end-to-end; sometimes it needs all of us.
             </p>
             <p className="text-muted">
-              No account managers, no hand-offs to a junior bench. The people you talk to are the people who build it.
+              No account managers, no hand-offs to someone you haven't met. The people you talk to are the people who build it.
             </p>
             <TextLink to="/about">More about the studio</TextLink>
           </Reveal>
