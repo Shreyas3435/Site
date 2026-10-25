@@ -43,10 +43,10 @@ export const principles = [
 
 /**
  * The crew. Deliberately no names or portraits — the studio is presented as
- * one team of three, each experienced in the technology their layer needs.
+ * one small team, each experienced in the technology their layer needs. No
+ * headcount anywhere, so people can join or leave without touching the copy.
  */
 export const crew = {
-  size: 3,
   disciplines: [
     {
       code: "FS",
@@ -76,7 +76,7 @@ export const faqs = [
   },
   {
     q: "Who will actually work on my project?",
-    a: "The three of us. There are no account managers and no middlemen — the engineers you talk to on the first call are the ones who design and build it.",
+    a: "The engineers on our team. There are no account managers and no middlemen — the engineers you talk to on the first call are the ones who design and build it.",
   },
   {
     q: "How do engagements usually start?",

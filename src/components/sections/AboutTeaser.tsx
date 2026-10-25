@@ -12,13 +12,13 @@ export function AboutTeaser() {
             <SectionLabel index="08">The team</SectionLabel>
             <RevealText
               id="about-title"
-              lines={["Three engineers.", "Every layer", "covered."]}
+              lines={["Small team.", "Every layer", "covered."]}
               className="mt-8 text-title font-medium uppercase"
             />
           </div>
           <Reveal className="space-y-5 text-fg-2 md:col-span-4 md:self-end">
             <p>
-              We're a team of three, and each of us is experienced in the tech your project needs — interface,
+              We're a small team, and each of us is experienced in the tech your project needs — interface,
               services, data, AI and cloud. Sometimes one of us takes a project end-to-end; sometimes it needs all of us.
             </p>
             <p className="text-muted">

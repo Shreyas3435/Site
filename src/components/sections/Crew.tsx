@@ -1,11 +1,10 @@
 import { crew } from "@/content/studio";
 import { cn } from "@/lib/cn";
-import { CountUp } from "@/components/ui/CountUp";
 import { Corners } from "@/components/ui/Placeholder";
 import { Reveal } from "@/components/ui/Reveal";
 import { Spotlight } from "@/components/ui/Spotlight";
 
-/** The team, presented as one crew of three — no names, just coverage. */
+/** The team, presented as one crew — no names or headcount, just coverage. */
 export function CrewGrid({ className }: { className?: string }) {
   return (
     <div className={cn("grid gap-px border border-line bg-line lg:grid-cols-12", className)}>
@@ -15,8 +14,8 @@ export function CrewGrid({ className }: { className?: string }) {
           <span className="text-accent">■</span>&nbsp; The crew
         </p>
         <div className="mt-16 lg:mt-0">
-          <p className="text-[clamp(6rem,14vw,12rem)] font-medium leading-[0.8] tracking-[-0.07em] text-fg">
-            <CountUp to={crew.size} />
+          <p className="text-[clamp(3.5rem,7vw,6rem)] font-medium uppercase leading-[0.85] tracking-[-0.05em] text-fg">
+            One<br />crew.
           </p>
           <p className="mt-6 max-w-xs text-fg-2">
             Young engineers. Each one experienced in the technology their layer demands — together, the whole stack.

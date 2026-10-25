@@ -22,7 +22,7 @@ All content is data in `src/content/`. Components only render it, so real detail
 | Capabilities (5 domains × 4 items) | `src/content/capabilities.ts` |
 | "Already have a product?" rows | `src/content/diagnostics.ts` |
 | **Case studies** | `src/content/projects.ts`. Representative engagements (no invented clients or results). Add `images[].src` (e.g. `/work/search-01.webp` in `public/`) and the real screenshot replaces the abstract preview automatically |
-| **Team** | `src/content/studio.ts` → `crew`. Presented as one team of three with the disciplines and stack each covers — no names or portraits |
+| **Team** | `src/content/studio.ts` → `crew`. Presented as one small team (no headcount) with the disciplines and stack each covers — no names or portraits |
 | **Team page** (`/team`) | `src/content/team.ts`: name, role, bio, specialities, "can help with", stack, projects and links for each engineer. Portraits go in `public/team/` with the path set as `photo`. All entries are placeholders for now |
 | FAQ | `src/content/studio.ts` → `faqs` |
 | Project planner options | `src/content/planner.ts` |

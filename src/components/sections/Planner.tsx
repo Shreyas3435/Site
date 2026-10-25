@@ -148,7 +148,7 @@ export function Planner() {
             </ul>
 
             <dl className="mt-8 grid grid-cols-2 gap-6 border-t border-line pt-6">
-              <Readout label="Engineers" value={active.size ? `${active.size} of ${crew.size}` : "—"} />
+              <Readout label="Engineers" value={active.size ? String(active.size) : "—"} />
               <Readout label="Engagement" value={engagement} />
               <Readout label="We'd start with" value={stageInfo?.start ?? "—"} wide />
             </dl>

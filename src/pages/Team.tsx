@@ -13,7 +13,7 @@ export default function Team() {
     <>
       <PageHero
         label="Team"
-        lines={["Three engineers.", "One crew."]}
+        lines={["Every layer.", "One crew."]}
         intro={`The people behind ${site.name}. Each of us owns a layer of the stack; together we cover the whole thing.`}
       />
 
