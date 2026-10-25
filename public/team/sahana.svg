@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Cartoon portrait of Sahana H R">
+  <defs>
+    <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a1d17"/>
+      <stop offset="1" stop-color="#0f0a08"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" fill="#1c1916"/>
+  <circle cx="100" cy="90" r="72" fill="#ff5b2e" opacity="0.13"/>
+
+  <!-- hair, back layer -->
+  <path d="M58 84c-6 30-12 62-16 96h116c-4-34-10-66-16-96z" fill="url(#hair)"/>
+
+  <!-- cardigan -->
+  <path d="M24 200c3-36 30-56 76-58 46 2 73 22 76 58z" fill="#24201d"/>
+  <!-- top -->
+  <path d="M78 146q22 16 44 0l8 54H70z" fill="#ff5b2e"/>
+  <!-- cardigan fronts -->
+  <path d="M74 147l18 53H62z" fill="#302a26"/>
+  <path d="M126 147l-18 53h30z" fill="#302a26"/>
+
+  <!-- neck -->
+  <path d="M86 122h28v20c0 9-28 9-28 0z" fill="#9c6340"/>
+  <path d="M86 132q14 8 28 0v-6H86z" fill="#7d4c30" opacity="0.5"/>
+
+  <!-- face: softer jaw -->
+  <path d="M60 82c0-24 18-40 40-40s40 16 40 40v16c0 16-10 28-22 34l-6 3c-8 4-16 4-24 0l-6-3c-12-6-22-18-22-34z" fill="#b97a52"/>
+
+  <!-- hair, front: centre part falling over the ears -->
+  <path d="M58 98c-6-32 10-58 42-60 32 2 48 28 42 60-4-16-10-28-22-34-8 2-14 2-20-2-6 4-12 4-20 2-12 6-18 18-22 34z" fill="url(#hair)"/>
+  <path d="M58 92c-4 18-2 34 4 46l-10 2c-6-16-4-34 6-48z" fill="url(#hair)"/>
+  <path d="M142 92c4 18 2 34-4 46l10 2c6-16 4-34-6-48z" fill="url(#hair)"/>
+  <path d="M100 40c-10 2-18 8-22 16 6-6 14-10 22-10z" fill="#5a4436" opacity="0.8"/>
+
+  <!-- brows -->
+  <path d="M72 76q9-4 18-1M110 75q9-3 18 1" fill="none" stroke="#1d1612" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- round glasses -->
+  <circle cx="82" cy="90" r="12" fill="#ffffff" fill-opacity="0.06" stroke="#0d0b0a" stroke-width="3"/>
+  <circle cx="118" cy="90" r="12" fill="#ffffff" fill-opacity="0.06" stroke="#0d0b0a" stroke-width="3"/>
+  <path d="M94 89q6-4 12 0M70 88l-9-2M130 88l9-2" fill="none" stroke="#0d0b0a" stroke-width="3" stroke-linecap="round"/>
+  <!-- eyes -->
+  <ellipse cx="82" cy="91" rx="3.5" ry="4" fill="#1d1612"/>
+  <ellipse cx="118" cy="91" rx="3.5" ry="4" fill="#1d1612"/>
+  <circle cx="83.5" cy="89.5" r="1.2" fill="#ffffff"/>
+  <circle cx="119.5" cy="89.5" r="1.2" fill="#ffffff"/>
+
+  <!-- nose -->
+  <path d="M101 100q-2 8 0 10q-3 1-5 0" fill="none" stroke="#94593a" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- smile -->
+  <path d="M89 118q11 8 22 0" fill="none" stroke="#6b3420" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- stud earrings -->
+  <circle cx="57" cy="110" r="2.5" fill="#ff5b2e"/>
+  <circle cx="143" cy="110" r="2.5" fill="#ff5b2e"/>
+</svg>
