@@ -2,11 +2,10 @@ import { site } from "@/content/site";
 
 /**
  * Project enquiry submission.
- * Enquiries are sent through FormSubmit (formsubmit.co), which emails each one
- * to `site.email`. No backend or API key: the first submission triggers a
- * one-time "Activate form" email to that inbox, and everything after that is
- * delivered straight through. Replies go to the visitor, because FormSubmit
- * uses their `email` field as the reply-to address.
+ * The form posts to /api/enquiry, served by the Cloudflare Worker in
+ * worker/index.ts, which emails the enquiry to the studio inbox through
+ * Cloudflare Email Routing. Replies go to the visitor via Reply-To.
+ * If sending fails, the form offers `mailtoFor()` so nothing is lost.
  */
 
 export type Enquiry = {
@@ -31,26 +30,27 @@ export function validateEnquiry(e: Enquiry): EnquiryErrors {
 
 export type EnquiryResult = { ok: true };
 
-const ENDPOINT = `https://formsubmit.co/ajax/${site.email}`;
-
 /** `honeypot` is a field real people never see, so anything in it means a bot. */
 export async function submitEnquiry(payload: Enquiry, honeypot = ""): Promise<EnquiryResult> {
-  const res = await fetch(ENDPOINT, {
+  const res = await fetch("/api/enquiry", {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({
-      _subject: `New project enquiry — ${payload.name}${payload.company ? ` (${payload.company})` : ""}`,
-      _template: "table",
-      _honey: honeypot,
-      Name: payload.name,
-      email: payload.email,
-      Company: payload.company || "—",
-      Budget: payload.budget || "—",
-      Timeline: payload.timeline || "—",
-      Brief: payload.brief,
-    }),
+    body: JSON.stringify({ ...payload, honeypot }),
   });
-  const json = (await res.json().catch(() => null)) as { success?: boolean | string } | null;
-  if (!res.ok || String(json?.success) !== "true") throw new Error(`FormSubmit responded ${res.status}`);
+  const json = (await res.json().catch(() => null)) as { ok?: boolean } | null;
+  if (!res.ok || json?.ok !== true) throw new Error(`Enquiry endpoint responded ${res.status}`);
   return { ok: true };
+}
+
+/** A pre-filled email with the same enquiry, for when the form can't send. */
+export function mailtoFor(e: Enquiry) {
+  const details = [
+    `Name: ${e.name}`,
+    e.company ? `Company: ${e.company}` : null,
+    e.budget ? `Budget: ${e.budget}` : null,
+    e.timeline ? `Timeline: ${e.timeline}` : null,
+  ].filter((l): l is string => l !== null);
+  const lines = [...details, "", e.brief];
+  const subject = `Project enquiry — ${e.name}`;
+  return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 }

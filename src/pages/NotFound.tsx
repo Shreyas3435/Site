@@ -1,10 +1,8 @@
 import { useLocation } from "react-router";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { Button } from "@/components/ui/Button";
 import { RevealText } from "@/components/ui/Reveal";
 
 export default function NotFound() {
-  useDocumentTitle("Not found");
   const { pathname } = useLocation();
   return (
     <section className="flex min-h-[90svh] items-center pt-[var(--header-h)]">

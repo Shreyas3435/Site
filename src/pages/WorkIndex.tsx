@@ -3,7 +3,6 @@ import { useMemo, useState } from "react";
 import { projects } from "@/content/projects";
 import { cn } from "@/lib/cn";
 import { EASE_OUT } from "@/lib/easing";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { PageHero } from "@/components/sections/PageHero";
 import { ProjectCard } from "@/components/sections/ProjectCard";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -12,7 +11,6 @@ import { SlidingArrow } from "@/components/ui/Arrow";
 import { Corners } from "@/components/ui/Placeholder";
 
 export default function WorkIndex() {
-  useDocumentTitle("Work");
   const tags = useMemo(() => Array.from(new Set(projects.flatMap((p) => p.tags))), []);
   const [filter, setFilter] = useState<string | null>(null);
   const visible = filter ? projects.filter((p) => p.tags.includes(filter)) : projects;

@@ -1,10 +1,20 @@
-// Cloudflare Workers config. The site is a static SPA: `npm run build` writes
-// dist/, and Cloudflare serves it, falling back to index.html for client routes.
+// Cloudflare Workers config. `npm run build` writes the static site to dist/,
+// which Cloudflare serves directly, falling back to index.html for client routes.
+// Only /api/* runs the Worker (worker/index.ts), which emails form enquiries.
 {
   "name": "site",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-09-01",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application"
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  // Needs Email Routing on arkatechlabs.com with ENQUIRY_TO added as a verified destination.
+  "send_email": [{ "name": "ENQUIRY_EMAIL", "destination_address": "arkatechworks@gmail.com" }],
+  "vars": {
+    "ENQUIRY_TO": "arkatechworks@gmail.com",
+    "ENQUIRY_FROM": "enquiries@arkatechlabs.com"
   }
 }

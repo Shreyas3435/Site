@@ -3,7 +3,7 @@ import { useEffect, useId, useState, type FormEvent, type ReactNode } from "reac
 import { timelines as TIMELINES } from "@/content/planner";
 import { liveSocials, site } from "@/content/site";
 import { useBriefDraft } from "@/lib/brief";
-import { submitEnquiry, validateEnquiry, type Enquiry, type EnquiryErrors } from "@/lib/enquiry";
+import { mailtoFor, submitEnquiry, validateEnquiry, type Enquiry, type EnquiryErrors } from "@/lib/enquiry";
 import { cn } from "@/lib/cn";
 import { EASE_OUT } from "@/lib/easing";
 import { Button } from "@/components/ui/Button";
@@ -261,9 +261,17 @@ function EnquiryForm() {
 
             <div className="flex flex-col-reverse gap-6 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
               <p id="form-note" className="max-w-xs text-xs leading-relaxed text-muted">
-                {status === "error"
-                  ? "Something went wrong sending that. Please try again, or email us directly."
-                  : "No newsletters, no sales sequences. Just a reply from an engineer."}
+                {status === "error" ? (
+                  <>
+                    That didn't send. Try again, or{" "}
+                    <a href={mailtoFor(values)} className="link-line text-fg-2 hover:text-fg">
+                      send it by email instead
+                    </a>
+                    {" "}— your details are already filled in.
+                  </>
+                ) : (
+                  "No newsletters, no sales sequences. Just a reply from an engineer."
+                )}
               </p>
               <Button type="submit" variant="accent" size="lg" disabled={status === "sending"} cursorLabel="Send">
                 {status === "sending" ? "Sending…" : "Send project"}

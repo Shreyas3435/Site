@@ -1,4 +1,3 @@
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { site } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { Manifesto } from "@/components/sections/Manifesto";
@@ -27,7 +26,6 @@ const WAYS = [
 ];
 
 export default function About() {
-  useDocumentTitle("About");
   return (
     <>
       <PageHero

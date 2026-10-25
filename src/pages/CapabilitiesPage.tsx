@@ -1,5 +1,4 @@
 import { capabilities } from "@/content/capabilities";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { PageHero } from "@/components/sections/PageHero";
 import { Diagnostics } from "@/components/sections/Diagnostics";
 import { Stack } from "@/components/sections/Stack";
@@ -11,7 +10,6 @@ import { Schematic } from "@/components/visuals/Schematic";
 import { InViewSchematic } from "@/components/visuals/InViewSchematic";
 
 export default function CapabilitiesPage() {
-  useDocumentTitle("Capabilities");
   return (
     <>
       <PageHero

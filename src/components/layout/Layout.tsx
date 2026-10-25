@@ -2,6 +2,7 @@ import { AnimatePresence } from "motion/react";
 import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router";
 import { scrollToTarget, useLenis } from "@/lib/smooth-scroll";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { Cursor } from "@/components/cursor/Cursor";
 import { Header } from "./Header";
 import { FloatingCTA } from "./FloatingCTA";
@@ -26,6 +27,7 @@ function labelFor(pathname: string) {
 
 export function Layout() {
   const location = useLocation();
+  usePageMeta(location.pathname);
   const lenis = useLenis();
 
   // Deep links to sections (/#process) scroll once the new page is revealed.

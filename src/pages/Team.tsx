@@ -1,4 +1,3 @@
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { team, upcoming, type TeamMember } from "@/content/team";
 import { cn } from "@/lib/cn";
 import { site } from "@/content/site";
@@ -8,7 +7,6 @@ import { MediaSlot } from "@/components/ui/Placeholder";
 import { Reveal } from "@/components/ui/Reveal";
 
 export default function Team() {
-  useDocumentTitle("Team");
   return (
     <>
       <PageHero

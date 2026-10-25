@@ -1,4 +1,3 @@
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { Hero } from "@/components/sections/Hero";
 import { Manifesto } from "@/components/sections/Manifesto";
 import { Capabilities } from "@/components/sections/Capabilities";
@@ -14,7 +13,6 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { ContactSection } from "@/components/sections/Contact";
 
 export default function Home() {
-  useDocumentTitle();
   return (
     <>
       <Hero />

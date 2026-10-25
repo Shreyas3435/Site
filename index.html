@@ -6,8 +6,68 @@
     <meta name="theme-color" content="#0a0a0b" />
     <meta name="color-scheme" content="dark" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Arka — Light up the stack</title>
-    <meta name="description" content="A small engineering studio building products, platforms and technical systems for teams that need more than off-the-shelf solutions." />
+    <!-- Title, description, canonical and og/twitter values are rewritten per route
+         from src/content/seo.ts, at build time and on navigation. -->
+    <title>Arka Tech Labs — Website, Web App & AI Development Studio</title>
+    <meta name="description" content="Arka is an engineering studio building websites, web apps, MVPs, AI features and cloud infrastructure for startups and businesses in the UK, US, India and worldwide." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://arkatechlabs.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Arka Tech Labs" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:url" content="https://arkatechlabs.com/" />
+    <meta property="og:title" content="Arka Tech Labs — Website, Web App & AI Development Studio" />
+    <meta property="og:description" content="Arka is an engineering studio building websites, web apps, MVPs, AI features and cloud infrastructure for startups and businesses in the UK, US, India and worldwide." />
+    <meta property="og:image" content="https://arkatechlabs.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Arka Tech Labs — Website, Web App & AI Development Studio" />
+    <meta name="twitter:description" content="Arka is an engineering studio building websites, web apps, MVPs, AI features and cloud infrastructure for startups and businesses in the UK, US, India and worldwide." />
+    <meta name="twitter:image" content="https://arkatechlabs.com/og.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://arkatechlabs.com/#studio",
+        "name": "Arka Tech Labs",
+        "alternateName": "Arka",
+        "url": "https://arkatechlabs.com/",
+        "logo": "https://arkatechlabs.com/favicon.svg",
+        "image": "https://arkatechlabs.com/og.png",
+        "email": "arkatechworks@gmail.com",
+        "description": "Engineering studio building websites, web apps, MVPs, AI features and cloud infrastructure for startups and businesses.",
+        "areaServed": ["Worldwide", "United Kingdom", "United States", "India"],
+        "knowsAbout": [
+          "Website development",
+          "Web application development",
+          "MVP development",
+          "React",
+          "TypeScript",
+          "Python",
+          "AI integration",
+          "Large language models",
+          "Search",
+          "Workflow automation",
+          "Cloud infrastructure",
+          "DevOps"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web app development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "MVP development for startups" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI and LLM integration" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Search and workflow automation" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud and DevOps" } }
+          ]
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

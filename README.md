@@ -27,26 +27,32 @@ All content is data in `src/content/`. Components only render it, so real detail
 | FAQ | `src/content/studio.ts` → `faqs` |
 | Project planner options | `src/content/planner.ts` |
 | Tech stack, process steps, principles | `src/content/studio.ts` |
-| Page `<title>` / meta description | `index.html` and `src/hooks/useDocumentTitle.ts` |
+| Page `<title>` / meta description | `src/content/seo.ts` (shared social tags in `index.html`) |
 
 Remaining placeholders (socials, location) are marked `PLACEHOLDER` in `src/content/site.ts`. No client names, metrics, testimonials or results are invented anywhere.
 
 ## Contact form
 
-Enquiries are emailed to `site.email` (arkatechworks@gmail.com) through [FormSubmit](https://formsubmit.co). There's no backend and no API key. The first time anyone submits the live form, FormSubmit sends an **"Activate form"** email to that inbox. Click it once and every enquiry after that arrives as an email, with reply-to set to the visitor. A hidden honeypot field (`_honey`) filters out simple bots. The logic is in `src/lib/enquiry.ts`.
+Enquiries post to `/api/enquiry`, handled by the Cloudflare Worker in `worker/index.ts`. It emails each one to arkatechworks@gmail.com through Cloudflare Email Routing (the `send_email` binding in `wrangler.jsonc`), sent from `enquiries@arkatechlabs.com` with reply-to set to the visitor. No third-party form service is involved. A hidden honeypot field filters out simple bots. If sending fails, the form offers a pre-filled email instead (`mailtoFor` in `src/lib/enquiry.ts`).
+
+One-time setup in the Cloudflare dashboard: enable **Email Routing** on arkatechlabs.com and add arkatechworks@gmail.com as a verified destination address. The Vercel copy has no `/api`, so there the form always falls back to email.
 
 ## Hosting (Cloudflare)
 
-The site runs as a Cloudflare Worker named `site`, serving the static build from `dist/` (see `wrangler.jsonc`). Unknown paths fall back to `index.html`, so client-side routes like `/work` work on refresh.
+The site runs as a Cloudflare Worker named `site` (see `wrangler.jsonc`). Static files are served from `dist/`, unknown paths fall back to `index.html` for client-side routes, and only `/api/*` runs the Worker code.
 
-With the Worker connected to this repo in the Cloudflare dashboard (Settings → Build: build command `npm run build`, deploy command `npx wrangler deploy`), every push to `main` redeploys it. To deploy by hand instead:
+The Worker is connected to this repo in the Cloudflare dashboard (Settings → Build: build command `npm run build`, deploy command `npx wrangler deploy`), so every push to `main` redeploys https://arkatechlabs.com. To deploy by hand instead:
 
 ```bash
 npx wrangler login   # once, opens the browser
-npm run deploy       # builds and uploads dist/ to the "site" Worker
+npm run deploy       # builds and deploys the "site" Worker
 ```
 
 Vercel (project `arka`, https://arkatechworks.vercel.app) also builds every push to `main`; `vercel.json` holds its SPA rewrite.
+
+## Search (SEO)
+
+Titles and descriptions for every route live in `src/content/seo.ts`. At build time `vite.config.ts` writes `dist/<route>.html` for each route with those tags baked in, plus `sitemap.xml`; in the browser `usePageMeta` keeps the head in step on navigation. `index.html` holds the shared social tags and the schema.org `ProfessionalService` data, `public/og.png` is the link-preview image and `public/robots.txt` points crawlers at the sitemap. A new route needs an entry in `seo.ts`.
 
 ## Interactive pieces
 

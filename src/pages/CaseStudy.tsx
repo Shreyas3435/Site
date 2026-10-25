@@ -3,7 +3,6 @@ import { useRef, type ReactNode } from "react";
 import { Navigate, useParams } from "react-router";
 import { getProject, projects } from "@/content/projects";
 import { EASE_OUT } from "@/lib/easing";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { SlidingArrow } from "@/components/ui/Arrow";
 import { Corners, MediaSlot } from "@/components/ui/Placeholder";
@@ -18,7 +17,6 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 export default function CaseStudy() {
   const { slug } = useParams();
   const project = getProject(slug);
-  useDocumentTitle(project?.title);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
