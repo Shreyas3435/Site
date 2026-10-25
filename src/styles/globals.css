@@ -230,3 +230,18 @@ a:hover .ar-ray, a:focus-visible .ar-ray { animation: ar-pulse 1.6s cubic-bezier
     scroll-behavior: auto !important;
   }
 }
+
+/* Plain-HTML page content baked into each route for crawlers (content/crawlable.ts).
+   React replaces it on mount; this only keeps the brief first paint readable. */
+.crawl-fallback {
+  max-width: 72ch;
+  margin: 0 auto;
+  padding: 7rem 1rem 4rem;
+  color: var(--color-fg-2);
+  line-height: 1.6;
+}
+.crawl-fallback nav,
+.crawl-fallback footer { display: none; }
+.crawl-fallback h1,
+.crawl-fallback h2,
+.crawl-fallback h3 { color: var(--color-fg); margin: 1.5em 0 0.5em; }

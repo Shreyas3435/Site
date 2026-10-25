@@ -52,7 +52,9 @@ Vercel (project `arka`, https://arkatechworks.vercel.app) also builds every push
 
 ## Search (SEO)
 
-Titles and descriptions for every route live in `src/content/seo.ts`. At build time `vite.config.ts` writes `dist/<route>.html` for each route with those tags baked in, plus `sitemap.xml`; in the browser `usePageMeta` keeps the head in step on navigation. `index.html` holds the shared social tags and the schema.org `ProfessionalService` data, `public/og.png` is the link-preview image and `public/robots.txt` points crawlers at the sitemap. A new route needs an entry in `seo.ts`.
+Titles and descriptions for every route live in `src/content/seo.ts`. At build time `vite.config.ts` writes `dist/<route>.html` for each route with those tags baked in, plus `sitemap.xml`; in the browser `usePageMeta` keeps the head in step on navigation. `index.html` holds the shared social tags and the schema.org `ProfessionalService` data, `public/og.png` is the link-preview image and `public/robots.txt` points crawlers at the sitemap. A new route needs an entry in `seo.ts` (and a case in `crawlable.ts`).
+
+AI assistants (ChatGPT, Perplexity, Claude, Google's AI answers) mostly read raw HTML without running JavaScript, so `src/content/crawlable.ts` renders each page's content as plain HTML from the same content files. The build places it inside `<div id="root">` of that route's HTML (React replaces it on mount), adds per-page JSON-LD (FAQ on the home page, people on `/team`) and writes `llms.txt`. `robots.txt` explicitly allows the AI search crawlers.
 
 ## Interactive pieces
 
