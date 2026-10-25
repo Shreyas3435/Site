@@ -35,14 +35,18 @@ Remaining placeholders (socials, location) are marked `PLACEHOLDER` in `src/cont
 
 Enquiries are emailed to `site.email` (arkatechworks@gmail.com) through [FormSubmit](https://formsubmit.co). There's no backend and no API key. The first time anyone submits the live form, FormSubmit sends an **"Activate form"** email to that inbox. Click it once and every enquiry after that arrives as an email, with reply-to set to the visitor. A hidden honeypot field (`_honey`) filters out simple bots. The logic is in `src/lib/enquiry.ts`.
 
-## Hosting (Cloudflare Pages)
+## Hosting (Cloudflare)
+
+The site runs as a Cloudflare Worker named `site`, serving the static build from `dist/` (see `wrangler.jsonc`). Unknown paths fall back to `index.html`, so client-side routes like `/work` work on refresh.
+
+With the Worker connected to this repo in the Cloudflare dashboard (Settings → Build: build command `npm run build`, deploy command `npx wrangler deploy`), every push to `main` redeploys it. To deploy by hand instead:
 
 ```bash
 npx wrangler login   # once, opens the browser
-npm run deploy       # builds and uploads dist/ to the "arka" Pages project
+npm run deploy       # builds and uploads dist/ to the "site" Worker
 ```
 
-The site is served at `https://arka.pages.dev` (or a similar name if that one's taken). Pages falls back to `index.html` for unknown paths, so client-side routes like `/work` work on refresh.
+Vercel (project `arka`, https://arkatechworks.vercel.app) also builds every push to `main`; `vercel.json` holds its SPA rewrite.
 
 ## Interactive pieces
 
