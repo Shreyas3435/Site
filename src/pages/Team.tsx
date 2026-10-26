@@ -68,7 +68,6 @@ export default function Team() {
 function Member({ member: m, index }: { member: TeamMember; index: number }) {
   const n = String(index + 1).padStart(2, "0");
   const links = m.links.filter((l) => l.href && l.href !== "#");
-  const facts = [m.experience, m.location].filter(Boolean).join(" · ");
 
   return (
     <li id={m.slug} aria-labelledby={`${m.slug}-name`} className="scroll-mt-24 bg-ink md:last:odd:col-span-2 xl:last:odd:col-span-1">
@@ -87,7 +86,7 @@ function Member({ member: m, index }: { member: TeamMember; index: number }) {
               {m.name}
             </h2>
             <p className="mt-1 text-fg-2">{m.role}</p>
-            <p className="mt-2 eyebrow text-muted">{facts}</p>
+            {m.location && <p className="mt-2 eyebrow text-muted">{m.location}</p>}
           </div>
         </div>
 

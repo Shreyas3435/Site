@@ -49,9 +49,7 @@ const teamHtml = () =>
   team
     .map(
       (m) =>
-        `<section><h3>${esc(m.name)}, ${esc(m.role)}</h3>${
-          m.experience ? `<p>Experience: ${esc(m.experience)}</p>` : ""
-        }<p>${esc(m.bio)}</p>${ul(m.specialities.map(esc))}<p>Stack: ${esc(m.stack.join(", "))}</p></section>`,
+        `<section><h3>${esc(m.name)}, ${esc(m.role)}</h3><p>${esc(m.bio)}</p>${ul(m.specialities.map(esc))}<p>Stack: ${esc(m.stack.join(", "))}</p></section>`,
     )
     .join("");
 

@@ -2,7 +2,7 @@
  * The team page (/team).
  * Full profiles go in `team`; engineers still to be written up go in `upcoming`.
  *  - `photo`: put an image in `public/team/` (square works best) and set the path.
- *  - `experience`, `location`, `links`: optional; anything missing or left as "#" is hidden.
+ *  - `location`, `links`: optional; anything missing or left as "#" is hidden.
  */
 
 export type TeamMember = {
@@ -13,7 +13,6 @@ export type TeamMember = {
   code: string;
   photo?: string;
   location?: string;
-  experience?: string;
   /** Two or three sentences, max. */
   bio: string;
   /** What they're best at — three short items. */
@@ -34,7 +33,6 @@ export const team: TeamMember[] = [
     role: "Full-Stack Engineer",
     code: "FS",
     photo: "/team/shreyas.svg",
-    experience: "2+ years",
     bio: "Full-stack developer who works across the whole product, from interface to API to database, and increasingly AI: agents, MCP integrations and the developer tooling around them. Likes to start with the plan: shaping the product and its architecture before the first line of code, then seeing it through to production.",
     specialities: ["Product planning & architecture", "End-to-end web apps", "AI agents & MCP integrations"],
     stack: ["React", "Next.js", "TypeScript", "Node.js", "Python", "FastAPI", "PostgreSQL", "LLMs"],
@@ -50,7 +48,6 @@ export const team: TeamMember[] = [
     role: "Data Science Analyst",
     code: "AI",
     photo: "/team/sahana.svg",
-    experience: "1.5+ years",
     bio: "Data scientist working across Python, SQL, machine learning and ETL pipelines. Builds models and dashboards, writes complex SQL and runs the validation and quality checks that keep results trustworthy, and increasingly builds AI-driven tools, including LLM-based applications.",
     specialities: ["Machine learning & data analysis", "ETL pipelines & data quality", "LLM-based applications"],
     stack: ["Python", "SQL", "Machine learning", "ETL", "LLMs", "Dashboards"],
